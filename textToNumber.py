@@ -40,25 +40,27 @@ ThousandsAndAbove = {
     'trillion':     1000000000000
 }
 
-#hundred thousand three hundred forty four
+
 def text2num(s):
-    a = re.split("[\s]+", s)
-    n = 0
-    g = 0
-    for w in a:
-        x = UnitsAndTens.get(w, None)
+    textFrmUsr = re.split("[\s]+", s)
+    value = 0
+    magnitude = 0
+    
+    for i in textFrmUsr:
+        faceVal = UnitsAndTens.get(i, None)
 
-        if x is not None:
-            g += x
+        if faceVal is not None:
+            magnitude += faceVal
 
-        elif w == "hundred":
-            g *= 100
+        elif i == "hundred":
+            magnitude *= 100
+        
         else:
-            x = ThousandsAndAbove.get(w, None)
-            if x is not None:
-                n += g * x
-                g = 0
+            faceVal = ThousandsAndAbove.get(i, None)
+            if faceVal is not None:
+                value += magnitude * faceVal
+                magnitude = 0
             else:
-                raise LookupError("Unknown number: "+w)
+                raise LookupError("Unknown number: "+i)
 
-    return n + g
+    return value + magnitude

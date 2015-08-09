@@ -21,14 +21,19 @@ def create_random_int():
 
 def compare(a,b):
 	if(a == b):
-		return True
+		return "True"
 
-def take_input():
+	elif(a > b):
+		return "too high"
+
+	else :
+		return "too low"
+
+def take_input(randomNum):
 
 	numbr = raw_input("Enter a number :")
 
-	randomNum = create_random_int()
-	print ("Random number is : "+str(randomNum))
+#	print ("Random number is : "+str(randomNum))
 
 	validate(randomNum, numbr)
 
@@ -38,13 +43,15 @@ def validate_for_int_from_text(randomNum, numbr):
 		int_number_from_Text = textToNumber.text2num(numbr.lower())
 
 		if (1 <= int_number_from_Text and int_number_from_Text <= 25):
-				
-			if(compare(int_number_from_Text,randomNum)):
-				print ("Success! You did hit the mark my friend")
+			
+			compareResult = compare(int_number_from_Text,randomNum)	
+			if(compareResult == "True"):
+				print ("Congratulations! You did hit the mark my friend")
 				sys.exit()
 
 			else :
 				print ("Better luck next time")
+				print ("Your guess was "+compareResult)
 
 		else :
 			raise ArithmeticError
@@ -57,6 +64,7 @@ def validate_for_int_from_text(randomNum, numbr):
 		print ("Invalid input")
 		print e
 
+
 def validate(randomNum, numbr):
 	try:
 		int_number = int (numbr)
@@ -67,15 +75,17 @@ def validate(randomNum, numbr):
 	else:
 		try :
 			if (1 <= int_number and int_number <= 25):
-					
-				if(compare(int_number,randomNum)):
-					print ("Success")
+				
+				compareResult = compare(int_number,randomNum)
+
+				if(compareResult == "True"):
+					print ("Congratulations! You did hit the mark my friend")
 					print
 					sys.exit()
 
 				else :
 					print ("Better luck next time")
-					print
+					print ("Your guess was "+compareResult)
 
 			else :
 				raise ArithmeticError
@@ -87,9 +97,13 @@ def validate(randomNum, numbr):
 ################################################################################
 
 def main():
+
+	randomNum = create_random_int()
+	
 	i = 0
+
 	while (i<5):
-		take_input()
+		take_input(randomNum)
 		i += 1
 
 if __name__ == '__main__':
