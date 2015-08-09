@@ -20,16 +20,21 @@
 
 # Body
 
+def count(word, char):
+	count = 0
+
+	for letter in word:
+		if (letter == char):
+			count +=1
+
+	print ("Count of '"+char+"' in '"+word+"' is : "+str(count))
 
 
 
 ################################################################################
 def main():
 
-    # Remove print("Hello World!") and add several functions calls to count()
-    # below, passing various strings and letters
-    print("Hello World!") 
-    
+    count ("abcabcabcabcabc","a")
 
 if __name__ == '__main__':
     main()

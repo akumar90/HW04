@@ -21,17 +21,44 @@
 
 ################################################################################
 # Imports
-
+import math
 
 # Body
 
+def evaluate(s):
+	try:
+		value = str(eval(s))
+		print ("The value of the expression '"+s+"' is "+value)
+		return value
 
+	except Exception as e:
+		print ("Error while evaluating the expression")
+		raise Exception
+
+
+def eval_loop():
+
+	finalReturn = "N/A"
+
+	while(True):
+		try:
+			s = raw_input("Enter the expression : ")
+		
+			if(s != "done"):
+				finalReturn = evaluate(s)
+
+			else :
+				print ("Value of the previous expression : "+finalReturn)
+				break
+
+		except Exception as e:
+			pass
 
 
 ################################################################################
 def main():
-    pass # Remove this line and uncomment below once eval_loop is defined.
-    # eval_loop()
+    
+    eval_loop()
     
 
 if __name__ == '__main__':
